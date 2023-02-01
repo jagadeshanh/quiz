@@ -1,0 +1,90 @@
+<!-- <p>register works!</p> -->
+<div class="card auth card-text-white">
+  <!-- <div class="card-header">
+    Registration
+  </div> -->
+  <div class="card-body auth-card">
+    <div class="auth-avatar">
+      <img
+        src="https://pluspng.com/img-png/user-png-icon-account-avatar-human-male-man-men-people-person-download-svg-download-png-edit-icon-512.png"
+        alt="user"
+        class="user-image"
+      />
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group ">
+        <label for="exampleInputName">Name</label>
+        <input type="text" class="form-control" id="exampleInputName" formControlName="name">
+        <div *ngIf="formControl?.['name']?.touched && formControl?.['name']?.invalid" class="alert alert-danger">
+          <div *ngIf="formControl?.['name']?.errors?.['required']">Name is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" formControlName="email">
+        <div *ngIf="formControl?.['email']?.touched && formControl?.['email']?.invalid" class="alert alert-danger">
+          <div *ngIf="formControl?.['email']?.touched && formControl?.['email']?.errors?.['required']">
+            Email is required
+          </div>
+          <div *ngIf="formControl?.['email']?.touched && formControl?.['email']?.errors?.['invalidEmail']">
+            Enter a valid email address must have @ and .com Or .in
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPhone">Phone</label>
+        <input type="tel" class="form-control" id="exampleInputPhone" formControlName="mobileNumber">
+        <div *ngIf="formControl?.['mobileNumber']?.touched && formControl?.['mobileNumber']?.invalid"
+             class="alert alert-danger">
+         <div *ngIf="formControl?.['mobileNumber']?.touched && formControl?.['mobileNumber']?.errors?.['required']">
+            Mobile Number is required.
+          </div>
+          <div *ngIf="formControl?.['mobileNumber']?.touched && formControl?.['mobileNumber']?.errors?.['invalidPhone']">
+            Please, Enter 10 digit valid Indian phone number.
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword" formControlName="password">
+        <div *ngIf="formControl?.['password']?.touched && formControl?.['password']?.invalid"
+             class="alert alert-danger">
+          <div *ngIf="formControl?.['password']?.touched && formControl?.['password']?.errors?.['required']">
+            Password is required
+          </div>
+          <div *ngIf="formControl?.['password']?.touched && formControl?.['password']?.errors?.['invalidPassword']">
+            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase
+            letter and 1 number
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" formControlName="confirmPassword">
+        <div *ngIf="formControl?.['confirmPassword']?.touched && formControl?.['confirmPassword']?.invalid"
+             class="alert alert-danger">
+          <div
+            *ngIf="formControl?.['confirmPassword']?.touched && formControl?.['confirmPassword']?.errors?.['required']">
+            Confirm Password is required
+          </div>
+          <div
+            *ngIf="formControl?.['confirmPassword']?.touched && formControl?.['confirmPassword']?.errors?.['passwordMismatch']">
+            Passwords doesn't match
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-warning text-white" [disabled]="!form.valid">Sign Up</button>
+      </div>
+      <div class="text-center">
+         Already have an account ?<a routerLink="/login" class="btn btn-link text-warning font-weight-bold text-decoration-none"><b>Login</b></a>here.
+      </div>
+    </form>
+  </div>
+<!--  <div class="card-footer text-muted">-->
+
+<!--  </div>-->
+</div>
+
+
+
