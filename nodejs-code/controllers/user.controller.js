@@ -1,10 +1,9 @@
 const { User } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
-dotenv.config();
+// const dotenv = require("dotenv");
+// dotenv.config();
 const { jwt_token, jwt_expries_in } = require("../config");
-const e = require("express");
 
 module.exports.dashboard = (req, res, next) => {
   res.sendFile(__dirname + "/index.html");
@@ -60,17 +59,32 @@ module.exports.login = (req, res) => {
           user.password
         );
         if (!validPass) {
-          return res.status(401).send("Email or Password is wrong");
+          return res
+            .status(401)
+            .json([{ status: true, error: "Email or Password is wrong" }]);
         }
         // Create and assign token
         let payload = { id: user._id, user_type_id: user.user_type_id };
         const token = jwt.sign(payload, jwt_token, {
           expiresIn: jwt_expries_in,
         });
-        res.status(200).header("auth-token", token).send({ token: token });
+        res
+          .status(200)
+          .header("auth-token", token)
+          .send({ status: true, token: token });
       } else {
-        res.status(401).send("Invalid mobile");
+        res.status(401).send("Invalid Email");
       }
     }
   });
+};
+
+module.exports.welcome = (req, res) => {
+  // here we get token and we need to verify
+  res.status(200).send("Welcome to Dashboard");
+};
+
+module.exports.logout = (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({ message: "Logout successful" });
 };

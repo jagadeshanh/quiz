@@ -1,14 +1,40 @@
-<p>home works!</p>
-<div class="container">
-  <div class="card">
-    <div class="card-header">
-      <p class="card-title">Online Test Portal</p>
+<!-- <p>home works!</p> -->
+<!-- <div class=".container-{breakpoint}"> -->
+  <div class="row">
+    <div class="col">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">Online Test</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact</a>
+            </li>
+          </ul>
+          <span class="navbar-text">
+          <ul>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Logout</a>
+            </li>
+          </ul>
+          </span>
+        </div>
+      </nav>
     </div>
-    <div class="card-body">
+  </div>
+  <div class="row">
+    <div class="col">
       Welcome Anupama!
       <br>
       Welcome {{userName}}
     </div>
   </div>
-</div>
-
+<!-- </div> -->

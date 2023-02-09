@@ -1,0 +1,15 @@
+
+body, html {
+    height: 100%;
+    width: 100%;
+  }
+  .bg {
+    /* The image used */
+    background-image: url("/assets/online-test-concept-illustration_114360-5456.webp");
+    /* Half height */
+    height: 100vh;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
