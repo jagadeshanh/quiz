@@ -11,4 +11,8 @@ module.exports = {
   db_password: process.env.DB_PASSWORD,
   jwt_token: process.env.TOKEN_SECRET,
   jwt_expries_in: process.env.TOKEN_EXPIRES_IN,
+  mail_host: process.env.MAIL_HOST,
+  mail_port: process.env.MAIL_PORT,
+  mail_username: process.env.MAIL_USERNAME,
+  mail_password: process.env.MAIL_PASSWORD,
 };

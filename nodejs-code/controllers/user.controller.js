@@ -1,9 +1,19 @@
 const { User } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const bodyParser = require("body-parser");
+// const nodemailer = require("nodemailer");
+// const app = express();
 // const dotenv = require("dotenv");
 // dotenv.config();
-const { jwt_token, jwt_expries_in } = require("../config");
+const {
+  jwt_token,
+  jwt_expries_in,
+  mail_host,
+  mail_port,
+  mail_username,
+  mail_password,
+} = require("../config");
 
 module.exports.dashboard = (req, res, next) => {
   res.sendFile(__dirname + "/index.html");
