@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import axios from 'axios';
 import { CustomvalidationService } from '../services/customvalidation.service';
+// Import service from the library
+import { ToastEvokeService } from '@costlydeveloper/ngx-awesome-popup';
+import { AuthService } from 'src/app/helpers/auth.service';
+import { Router, CanActivate } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +19,9 @@ export class RegisterComponent implements OnInit {
   password = '';
   confirmPassword = '';
 
+  users = [];
+  errors = [];
+
   // phonePattern = "^((\\+91-?)|0)?[0-9]{10}$";
   // emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
@@ -25,14 +32,17 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private customValidator: CustomvalidationService
+    private customValidator: CustomvalidationService,
+    private toastEvokeService: ToastEvokeService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.form = this.fb.group(
       {
         name: ['', Validators.required],
-        mobileNumber: [
+        phone: [
           '',
           Validators.compose([
             Validators.required,
@@ -62,6 +72,7 @@ export class RegisterComponent implements OnInit {
         ),
       }
     );
+    this.submit();
   }
 
   get formControl() {
@@ -70,13 +81,27 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     axios
-      .post('http://localhost:3000/register', this.form.value)
+      .post('http://localhost:3000/api/register', this.form.value)
       .then((response) => {
-        console.log(response);
+        this.users = response.data;
+        this.reset();
+        this.toastEvokeService
+          .info('Registeration 🦾', 'User Registered Successfully!')
+          .subscribe((res) => {
+            this.authService.login();
+            this.router.navigate(['/login']);
+          });
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-    // console.log(this.form.value);
+  }
+  reset() {
+    this.form.reset({
+      name: this.name,
+      email: this.email,
+      phone: this.phone,
+    });
   }
 }
